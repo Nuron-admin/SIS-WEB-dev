@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 
 // Routes
 app.get('', (req, res) => {
-    res.render('index', { title: 'Home Page'})
+    res.render('login', { title: 'Home Page'})
 })
 
 app.get('/about', (req, res) => {

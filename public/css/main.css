@@ -1,29 +1,56 @@
 body {
-    background-color: #eee;
-    font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(247, 220, 248);
+  background-image: linear-gradient(to right top, #9a15e7, #c816d8);
+  font-size: 26px;
 }
 
 .wrapper {
-    width: 700px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 10px;
+  padding: 0px;
+  min-height: 100%;
+}
+button {
+  background-color: #ea39ab;
+  color: white;
+  padding: 14px 20px;
+  text-align: center;
+  align-items: center;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+}
+#loginbtn:hover {
+  opacity: 0.8;
+  background-image: #9a3d9a;
+}
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-
-header, footer {
-    background-color: ghostwhite;
-    padding: 20px;
+header,
+footer {
+  background-color: ghostwhite;
+  padding: 20px;
+  border-bottom: 1px;
+  text-align: left;
 }
-
+.logindetails {
+  text-align: left;
+}
 main {
-    background-color: cornsilk;
-    padding: 20px;
+  padding: 20px;
+  min-height: fixed;
 }
-
 
 .layout-sidebar {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 2fr 1fr;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 2fr 1fr;
 }
