@@ -1,29 +1,134 @@
 body {
-    background-color: #eee;
-    font-size: 26px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(247, 220, 248);
+  background-image: linear-gradient(to right top, #9a15e7, #c816d8);
+  font-size: 26px;
+  margin: 0px;
+  min-height: 100vh;
 }
 
 .wrapper {
-    width: 700px;
-    margin: 0 auto;
-    background-color: #fff;
-    padding: 10px;
+  padding: 0px;
+  min-height: 100%;
+}
+header,
+footer {
+  background-color: ghostwhite;
+  border-bottom: 1px;
+  padding: 10px;
+}
+header {
+  align-items: center;
+  text-align: right;
+}
+footer {
+  position: fixed;
+  min-width: 100%;
+  bottom: 0;
+  font-size: 12px;
+  text-align: center;
+}
+.logo-top {
+  max-height: 30px;
+  max-width: 180px;
 }
 
-
-header, footer {
-    background-color: ghostwhite;
-    padding: 20px;
+.logo-discrption {
+  font-size: 8px;
 }
 
 main {
-    background-color: cornsilk;
-    padding: 20px;
+  min-height: 80vh;
 }
-
 
 .layout-sidebar {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: 2fr 1fr;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 2fr 1fr;
 }
+button {
+  background-color: #ea39ab;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  border-radius: 10px;
+}
+#loginbtn:hover {
+  opacity: 0.8;
+  background-image: #9a3d9a;
+}
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+/* this styling is for the user login page isf you wish to change anything in  the user login page please chage it hear*/
+.logindetails {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  min-height: 80vh;
+}
+.logindetails label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.logindetails #loginbtn {
+  margin-bottom: 0;
+}
+
+.rememberme {
+  font-weight: normal;
+  margin: 0 auto;
+}
+.rememberme label {
+  font-size: 12px;
+  padding: 0;
+}
+.overview {
+  background-color: pink;
+}
+select,
+option {
+  width: 100%;
+  padding: 8px 20px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 10px;
+}
+
+/*admin login customization*/
+.admin-logindetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
+  max-width: 8em;
+  min-height: 80vh;
+}
+.admin-logindetails #admin-loginbtn {
+  text-align: center;
+  max-width: 10em;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.admin-logindetails label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/*admin login customization over */
