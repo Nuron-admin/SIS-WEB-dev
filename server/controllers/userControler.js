@@ -1,4 +1,12 @@
-const mysql = require('mysql')
+const express = require('express');
+const mysql = require('mysql');
+// const expressLayouts = require('express-ejs-layouts');
+const app = express();
+
+//tried with the express lay out importing hgear
+//app.use(expressLayouts)
+// app.set('layout', './layouts/ full-width')
+// app.set('view engine', 'ejs')
 
 const pool = mysql.createPool({
   connectionlimit:10,
@@ -11,47 +19,29 @@ const pool = mysql.createPool({
 
 
 exports.view =(req, res) => {
-
-
-
-    pool.getConnection((err,connection) =>{
-        if(!err) console.log(err);//throw err;
-
-        console.log('connection as id');
-
-        connection.query('SELECT * FROM sakila.actor LIMIT 100', (err,rows) => {
-            connection.release();
-                    if(!err){
-                        
-                        res.render('login', { title: 'Nuron',rows});
-                    }
-                    else{
-                        console.log(err);
-                    }
-                    console.log('the data form user \n', rows);
-                   
-        });
-
-    });
-
+ res.render('login', { title: 'Nuron'});
+                    
 };
 
 
-exports.mysql =(req, res) => {
+exports.about =(req, res) => {
+    res.render('about', { title: 'Nuron', layout: './layouts/sidebar' })
+}
 
-    pool.getConnection((err,connection) =>{
-            if(err) throw err
-            console.log(`connection as id : `+ connection.threadId)
-           
-            connection.query('SELECT * FROM sakila.actor LIMIT 100', (err,rowsdata1)=>{
-                connection.release();
-                // console.log(rowsdata1);
-                res.set('layout', './layouts/admin-layout')
-                res.render('mysqlsampl',{ content : rowsdata1,  title: 'Nuron'})
+
+exports.Home =(req, res) => {
     
-            })
+    res.render('home',{ title: 'Nuron'})
+}
+
+
+exports.admin =(req, res) => {
     
-    
-        })
-   
+    res.render('admin-home',{ title: 'Nuron', error:"hideint"})
+}
+
+
+exports.add_roll =(req, res) => {
+
+    res.render('addroll',{ title: 'Nuron'})
 }

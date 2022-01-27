@@ -1,0 +1,13 @@
+<%- include('partials/admin_header') -%>
+<form action="/admin/add-role" method="post">
+<div class="addroll">
+    <label  for="role_name" >Roll name</label>
+    <input type="text" id="rollname" placeholder="Roll name" name="role_name" required></input>
+    <label  for="role_id">Roll ID</label>
+    <input type="text" id="rollid" placeholder="Roll primary key" name="role_id" required></input>
+    
+    <button type="submit" id="addrollbtn" name="Addroll">ADD ROLL</button>
+   
+</div>
+</form>
+<%- include('partials/footer') -%>

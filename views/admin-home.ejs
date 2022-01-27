@@ -1,8 +1,57 @@
-
+<%- include('partials/header') -%>
+<%if(error != "hideint"){%>
+    <div class="alert hide">
+        <span ><i class="bi bi-exclamation-diamond-fill exclamation"></i></span>
+        <span class="msg"><%=error%></span>
+        <div class="close-btn">
+           <span ><i class="bi bi-x-square fas"></i></span>
+        </div>
+     </div>
+     <%}%>
     <div class="admin-logindetails">
+        <form action="/admin" method="post">
         <label  for="admin-username" class="admin-username-h">Username</label>
-        <input type="text" id="admin-loginId" placeholder="Admin User ID" name="admin-username" required></input>
+        <input type="text" id="admin-loginId" placeholder="Admin User ID" name="emp_user_name" required></input>
         <label  for="admin-loginpassword" class="admin-password-h">Password</label>
-        <input type="password" id="admin-loginPassword" placeholder="Password" name="loginpassword" required></input>
+            <div class="passwordvisible">
+            <input type="password" id="password" placeholder="Password" name="emp_password" ></input> 
+            <i class="bi bi-eye-fill ico1 passhidden"></i>
+            <i class="bi bi bi-eye-slash-fill ico2 pass "></i>
+            <i class="pass passiconclick"></i>
+          </div>    
         <button type="submit" id="admin-loginbtn" name="Login">Login</button>
+    </form>
     </div> 
+    <script>
+        document.querySelector('.passiconclick').addEventListener("click",function() {
+console.log("the button was pressdsslkjflkjsdlkfj");
+const password = document.querySelector('#password');
+const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+password.setAttribute('type', type);
+
+const icon1 = document.querySelector('.ico1');
+icon1.classList.toggle("passhidden");
+icon1.classList.toggle("pass");
+const icon2 = document.querySelector('.ico2');
+icon2.classList.toggle("pass");
+icon2.classList.toggle("passhidden");
+});
+
+document.querySelector("#admin-loginbtn").addEventListener("click",function() {
+          console.log("you hav pressed the button");
+          document.querySelector('.alert').classList.add("show");
+          document.querySelector('.alert').classList.toggle("hide");
+          document.querySelector('.alert').classList.add("showAlert");
+           setTimeout(function(){
+            document.querySelector('.alert').classList.remove("show");
+            document.querySelector('.alert').classList.toggle("hide");
+           },5000);
+})
+document.querySelector(".close-btn").addEventListener("click",function() {
+         document.querySelector('.alert').classList.remove("show");
+          document.querySelector('.alert').classList.add("hide");
+         });
+
+    </script>
+   
+<%- include('partials/footer') -%>

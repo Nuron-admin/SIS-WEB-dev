@@ -7,7 +7,7 @@ body {
 
 .wrapper {
   padding: 0px;
-  min-height: 100%;
+  overflow: hidden;
 }
 main {
   padding: 20px;
@@ -19,7 +19,7 @@ footer {
   background-color: ghostwhite;
   border-bottom: 1px;
   padding: 10px;
-  width: 100%;
+  max-width: 100%;
 }
 header {
   display: flex;
@@ -38,15 +38,49 @@ header .navbar {
   align-items: center;
   margin-right: 20px;
 }
+.navicon {
+  align-items: center;
+  font-size: 15px;
+  color: rgb(212, 48, 199);
+  display: none;
+}
 
-a {
+@media only screen and (max-width: 600px) {
+  .navcon {
+    display: none;
+  }
+  .navicon {
+    display: flex;
+  }
+  header .navbar {
+    min-width: 20%;
+  }
+  .table-content td,
+  .table-content th {
+    border: 1px solid white;
+    font-size: 15px;
+    text-align: center;
+    padding: 2px;
+  }
+  tablebtn {
+    padding: 1px 4px;
+  }
+  header,
+  footer {
+    background-color: ghostwhite;
+    border-bottom: 1px;
+    padding: 5px;
+    max-width: 100%;
+  }
+}
+.navcon {
   text-decoration: none;
   text-transform: uppercase;
   font-size: 15px;
   color: rgb(212, 48, 199);
 }
 
-a:hover {
+.navcon:hover {
   color: rgb(193, 55, 228);
 }
 
@@ -70,7 +104,7 @@ button {
   width: 80%;
   border-radius: 10px;
 }
-#loginbtn:hover {
+.userdetails .loginbtn:hover {
   opacity: 0.8;
   background-image: #9a3d9a;
 }
@@ -86,16 +120,18 @@ input[type="password"] {
 
 .userdetails {
   max-width: 12em;
-  min-height: 80vh;
-  margin: 0 auto;
+  min-height: 80%;
+  margin: auto auto;
   display: flex;
   flex-direction: column;
   align-items: left;
-  justify-content: center;
+  justify-content: space-between;
 }
-.userdetails #loginbtn {
+.userdetails .loginbtn {
   margin: 8px auto;
   max-width: 10em;
+  margin-bottom: 10px;
+  margin-left: 80px;
 }
 
 .userdetails label {
@@ -116,8 +152,7 @@ select {
 /* this is place where i customizated main page for the add roll details*/
 
 .addroll {
-  max-width: 12em;
-  min-height: 80vh;
+  max-width: 8em;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -158,10 +193,395 @@ select {
   color: black;
   background-color: red;
 }
-.wap {
-  background-color: red;
+
+.table-content table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  min-width: 80%;
 }
-.opt {
-  background-color: blue;
+.table-content td,
+.table-content th {
+  border: 2px solid white;
+  font-size: 15px;
+  text-align: center;
+  padding: 8px;
+}
+
+.table-content tr:nth-child(even) {
+  background-color: rgb(233, 222, 222);
+}
+.table-content tr:nth-child(odd) {
+  background-color: rgb(214, 213, 213);
+}
+.table-content th {
+  background-color: #8099d1;
+}
+
+.tablebtn {
+  background-color: rgba(230, 230, 230, 0);
+  color: black;
+  padding: 3px 10px;
+  margin: 0 auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  /* border: 2px solid black; */
+  border-radius: 15px;
+}
+
+.tblbtnview {
+  max-width: 20px;
+  padding: 2px;
+}
+.tablebtn:hover {
+  opacity: 0.8;
+  background-color: black;
+  color: white;
+}
+.table-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 80%;
+  min-height: 80%;
+  margin: 1em auto;
+}
+.viewusertable {
+  margin-top: 0px;
+  min-width: 100%;
+}
+
+.btn {
+  background-color: #ea39ab;
+  color: white;
+  padding: 10px 20px;
+  margin: 0 0;
+  border: none;
+  cursor: pointer;
+  width: 80%;
+  border-radius: 10px;
+}
+
+.overlayout {
+  min-width: 100%;
+  height: 115%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  /* display: flex; */
+  justify-content: center;
+  /* align-items: center; */
+  display: none;
+}
+
+.frombg {
+  background-color: rgb(252, 216, 222);
+  width: 50%;
+  border-radius: 25px;
+  padding-top: 20px;
+  position: relative;
+  margin-top: 30px;
+  max-height: 635px;
+  margin-bottom: 20px;
+}
+.closeadduser {
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 40px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+#adduserbtnpopup {
+  max-width: 10%;
+}
+
+.viewuserbyidbg {
+  min-width: 100%;
+  min-height: 110vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+/* this customization for the page of viewing individual user */
+.displaydata {
+  width: 100vw;
+  height: 80vh;
+}
+.displayhero {
+  display: flex;
+  margin: 5px auto;
+}
+
+.colourcode {
+  font-size: 12px;
+  display: flex;
+  display: none;
+  flex-direction: row;
+}
+
+/* this customization for the page of editing individual user */
+.frominner {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.editpagebtn {
+  max-width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.editcontentinner table {
+  border: 0px;
+  background-color: #c1abd2;
+  border-radius: 25px;
+  padding-bottom: 40px;
+}
+.editcontentinner {
+  position: relative;
+}
+.editcontentinner button {
+  max-width: 150px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: 30px;
+}
+.editcontentinner button:hover {
+  background-color: #9ac6eb;
+  color: black;
+  font-weight: bold;
+}
+.editviewtd {
+  border: 2px;
+  font-size: 15px;
+  padding: 2px;
+  padding-left: 10px;
+  text-align: left;
+
+  border-radius: 35px;
+}
+#editbtn {
+  max-width: 150px;
+  border-radius: 25px;
+  margin: 0 auto;
+  margin-left: 40vw;
+}
+
+#emp_status {
+  max-width: 200px;
+}
+.find-from-bg {
+  min-width: 80%;
+  display: flex;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  margin: 0 auto;
+}
+.find-from {
+  display: flex;
+  align-items: right;
+  gap: 0.1em;
+}
+.adduserbtn {
+  min-width: 110px;
+  border-radius: 20px;
+  max-height: 40px;
+}
+
+.findbtn {
+  max-height: 40px;
+  max-width: 100px;
+  border-radius: 40px;
+}
+
+#addrolebtnpopup {
+  max-width: 100px;
+}
+
+#find {
+  max-width: 150px;
+}
+
+.editcontent form {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* this is for the adding the role in the over lay mode in the view role page   */
+
+.roleoverlayout {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.rolefrombg {
+  background-color: rgb(252, 216, 222);
+  max-height: 250px;
+  max-width: 60%;
+  min-width: 50%;
+  border-radius: 25px;
+  padding-top: 20px;
+  position: relative;
+}
+
+.closeaddrole {
+  color: black;
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 40px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.editrolecontentinner {
+  min-height: 20%;
+  min-width: 40%;
+  margin: 0 auto;
+}
+
+.editrolecontentinner form {
+  min-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.editrolecontentinner td {
+  color: black;
+  font-size: 15px;
+  width: 100px;
+  max-height: 30px;
+}
+
+.editrolecontentinner .editrolecontentinnercolor {
+  background-color: #c1abd2;
+  text-align: center;
+  padding: 20px;
+  border-radius: 15px;
+  position: relative;
+}
+
+.editrolecontentinnercolor button {
+  position: absolute;
+  max-width: 150px;
+  bottom: -25px;
+  border-radius: 15px;
+  left: 50px;
+}
+
+.editrolecontentinnercolor button:hover {
+  background-color: #9ac6eb;
+  color: black;
+  font-weight: bold;
+}
+
+/* ghffffffffffff */
+
+.displayhero table {
+  border-collapse: collapse;
+  margin: 0 auto;
+  min-width: 80%;
+}
+.displayhero td,
+.displayhero th {
+  border: 2px solid white;
+  font-size: 15px;
+  text-align: center;
+  padding: 8px;
+}
+
+.displayhero tr:nth-child(even) {
+  background-color: rgb(233, 222, 222);
+}
+.displayhero tr:nth-child(odd) {
+  background-color: rgb(214, 213, 213);
+}
+.displayhero th {
+  background-color: #8099d1;
+}
+
+.readonly {
+  background-color: rgb(218, 216, 216);
+  border-style: none;
+}
+.readonly:hover {
+  background-color: rgb(197, 143, 143);
+}
+
+/* .passwordvisible {
+  display: flex;
+  flex-direction: row;
+} */
+.passwordvisible {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  min-width: 75%;
+  max-width: 80%;
+}
+
+.pass {
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  font-size: 15px;
+}
+.passhidden {
+  display: none;
+}
+.passiconclick {
+  min-width: 20px;
+  min-height: 20px;
+}
+
+.autopass {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 30px;
+}
+.autbtn {
+  max-width: 30px;
+  background-color: #ea39ab;
+  color: white;
+  max-height: 30px;
+  text-align: center;
+  align-items: center;
+  margin: 0;
+  padding: 2px;
+  font-size: 12px;
+  margin-right: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.autbtn:hover {
+  background-color: #9ac6eb;
   color: black;
 }

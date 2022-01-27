@@ -1,25 +1,34 @@
 
-    <div class="userdetails">
-        <label  for="employname">Employee Name</label>
-        <input type="text" id="loginId" placeholder="Name" name="employname" required></input>
-        <label  for="employmailid">Employee Mail ID</label>
-        <input type="text" id="loginId" placeholder="Email" name="employmailid" required></input>
-        <label  for="employphonenum1">Primary Mobile Number</label>
-        <input type="text" id="loginId" placeholder="phone number" name="employphonenum1" required></input>
-        <label  for="employphonenum2">Secondary Mobile Number</label>
-        <input type="text" id="loginId" placeholder=" Secondary number" name="employphonenum2" required></input>
-        <label  for="employroll">Employee Roll<br></label>
-        <select name="employroll" id="employroll">
-            <option value="volvo">Volvo</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
+  <%- include('partials/admin_header') -%>
+<div class="wrapper">
+  <form action="/admin/add-user" method="post">
+      <div class="userdetails">
+
+          <label  for="emp_id">Employee ID</label>
+          <input type="text" id="loginId" placeholder="Name" name="emp_id" required></input>
+          <label  for="emp_name">Employee Name</label>
+          <input type="text" id="loginId" placeholder="Name" name="emp_name" required></input>
+          <label  for="emp_email">Employee Mail ID</label>
+          <input type="text" id="loginId" placeholder="Email" name="emp_email" required></input>
+          <label  for="emp_phone1">Primary Mobile Number</label>
+          <input type="text" id="loginId" placeholder="phone number" name="emp_phone1" required></input>
+          <label  for="emp_phone2">Secondary Mobile Number</label>
+          <input type="text" id="loginId" placeholder=" Secondary number" name="emp_phone2" required></input>
+          <label  for="emp_role">Employee Roll<br></label>
+          <select name="emp_role" id="employroll">
+          <%rolldata.forEach((data)=> {%>
+          <option class="dropedown" id=<%= data.role_id%>><%= data.role_name%></option>
+          <% });%>    
           </select>
-        <label  for="employmanager">Reporting Manager</label>
-        <input type="text" id="loginId" placeholder="Manager details" name="employmanager" required></input>  
-        <label  for="loginpassword">Password</label>
-        <input type="password" id="loginPassword" placeholder="Password" name="loginpassword" required></input>
-        <button type="submit" id="loginbtn" name="Login">Add User</button>
-    
+          <label  for="emp_repo_manager_name">Reporting Manager</label>
+          <input type="text" id="loginId" placeholder="Manager details" name="emp_repo_manager_name" ></input>  <label  for="emp_repo_manager_id">Reporting Manager ID</label>
+          <input type="text" id="loginId" placeholder="Manager details" name="emp_repo_manager_id" ></input>  
+        <!--  <label  for="loginpassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Password" name="loginpassword" required></input>-->
+          <!-- <input class="btn" id="loginbtn" name="Login" type="submit" value="Add User"></input>   -->
+        <button  class="btn"  id="loginbtn" type="submit">sub</button>
+
     </div>
- 
+  </form>
+
+    <%- include('partials/footer') -%>

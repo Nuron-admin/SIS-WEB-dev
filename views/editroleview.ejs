@@ -1,0 +1,27 @@
+<%- include('partials/admin_header.ejs') -%>
+
+<div class="editrolecontentinner">
+    
+    <form action="/admin/add-role/<%-roledataind[0].role_id%>" method="post">
+        <div class="editrolecontentinnercolor">
+    <table>
+        <div class="editroletablecontainer">
+         <tr>
+              <td >ROLE ID</td>
+              <td ><input type="text" class="editpagebtn" name="role_id" value=<%-roledataind[0].role_id%>></input></td>
+         </tr>
+         <tr >
+            <td >ROLE NAME</td>
+            <td ><input type="text" class="editpagebtn" name="role_name" value=<%-roledataind[0].role_name%>></input></td>
+       </tr>
+       
+</div>
+    </table>
+    <button  type="submit">MODDIFY DATA</button>
+    
+</div></form>
+
+
+</div>
+
+<%- include('partials/footer') -%>

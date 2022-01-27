@@ -1,6 +1,7 @@
 // Imports
 const express = require('express')
-const expressLayouts = require('express-ejs-layouts')
+const ejs = require('ejs');
+// const expressLayouts = require('express-ejs-layouts');
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
 
@@ -35,8 +36,8 @@ app.use(express.static(__dirname+'/public'))
 
 
 // Set Templating Engine
-app.use(expressLayouts)
-app.set('layout', './layouts/full-width')
+// app.use(expressLayouts)
+// app.set('layout', './layouts/full-width')
 app.set('view engine', 'ejs')
 
 // Routes
