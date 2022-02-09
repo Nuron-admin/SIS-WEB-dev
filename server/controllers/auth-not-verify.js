@@ -14,12 +14,15 @@ module.exports = function(req, res, next) {
     
     
     const indexofcookie = cookies.indexOf("Cookie");
-    console.log("the res in cookies in  is ",cookies[indexofcookie]);
+
+    if(indexofcookie !== -1){
+
+    console.log("the res in cookies in  is ",cookies[indexofcookie+1]);
 
     const cookievalue = cookies[indexofcookie+1];
 
 
-    console.log("the res in cookies in  is ",indexofcookie);
+    console.log("the res in cookies in  is ",indexofcookie+1);
     console.log("the cookies in auth is",cookievalue);
 
     var cookietruevalue = cookievalue.split("auth_token=");
@@ -43,4 +46,8 @@ if(!err){
 }else{
    return res.send("invalid request")
 }
+
+    }else{
+        next();
+    }
 }

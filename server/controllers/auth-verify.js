@@ -8,8 +8,7 @@ app.use(cookies());
 
 
 module.exports = function(req, res, next) {
-    console.log("the res in header completer is ", req);
-    console.log("the res in auth is ", req.cookie);
+    
 
     const cookies= req.rawHeaders;
     
