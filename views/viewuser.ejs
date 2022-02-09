@@ -39,30 +39,36 @@
   </div>
    
 <div class="overlayout">
+  <div class="alert hide_on_start hide">
+    <span ><i class="bi bi-exclamation-diamond-fill exclamation"></i></span>
+    <span class="msg"></span>
+    <div class="close-btn">
+       <span ><i class="bi bi-x-square fas"></i></span>
+    </div>
+ </div>
   <div class="frombg">
-  <form action="/admin/add-user" method="post">
+  <form id="adduserfrom" action="/admin/add-user" method="post">
     
     <div class="closeadduser">+</div>
     <div class="userdetails">
-        <label  for="emp_id">Employee ID</label>
-        <input type="text" placeholder="Name" name="emp_id" required></input>
+        <label  for="emp_id" id="emp_id_text">Employee ID</label>
+        <input type="text" id="emp_id" placeholder="Name" name="emp_id" required></input>
         <label  for="emp_name">Employee Name</label>
         <input type="text" placeholder="Name" name="emp_name" required></input>
-        <label  for="emp_email">Employee Mail ID</label>
-        <input type="text" placeholder="Email" name="emp_email" required></input>
+        <label id="emp_email_text" for="emp_email">Employee Mail ID</label>
+        <input type="text" id="emp_email" placeholder="Email" name="emp_email" required></input>
         <label  for="emp_phone1">Primary Mobile Number</label>
         <input type="text" placeholder="phone number" name="emp_phone1" required></input>
         <label  for="emp_phone2">Secondary Mobile Number</label>
-        <input type="text" placeholder=" Secondary number" name="emp_phone2" required></input>
+        <input type="text" placeholder=" Secondary number" name="emp_phone2"></input>
         <label  for="emp_role">Employee Roll<br></label>
-        <select name="emp_role" id="employroll">
-          <option selected="selected" >NULL</option>
+        <select name="emp_role" id="employroll"required>
           <%rolldata.forEach((data)=> {%>
             <option class="dropedown" id=<%= data.role_id%>><%= data.role_name%></option>
             <% });%>  
         </select>
         <label  for="emp_repo_manager_name">Reporting Manager</label>
-        <select name=" emp_repo_manager_name" id="repomanager">
+        <select name=" emp_repo_manager_name" id="repomanager"required>
 
         </select> 
         
@@ -72,7 +78,7 @@
         <label  for="emp_repo_manager_id">Password</label>
       <div class="autopass">
         <div class="passwordvisible">
-        <input type="password" id="password" placeholder="Manager details" name="emp_password" ></input> 
+        <input type="password" id="password" placeholder="Manager details" name="emp_password" required></input> 
         
         <i class="bi bi-eye-fill ico1 passhidden"></i>
         <i class="bi bi bi-eye-slash-fill ico2 pass "></i>
@@ -80,7 +86,7 @@
       </div>
       <div class="autbtn" type="nosubmit">Auto</div>
     </div>
-      <button  class="btn loginbtn"  type="submit">ADD USER</button>
+      <button  class="adduserfrombtn"  type="submit">ADD USER</button>
 
   </div>
 

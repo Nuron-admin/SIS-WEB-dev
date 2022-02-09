@@ -1,0 +1,53 @@
+<%- include('partials/user_header') -%>
+<div class="wrapper">
+  
+ 
+  
+  <div class="table-content">
+    <div class="find-from-bg">
+     <button class="adduserbtn"  id="addrolebtnpopup"><i class="bi bi-person-plus-fill"></i> Add new</button>
+    <form class="find-from" action="/Home/role" method="post">
+     <input id="find" type="text" placeholder="Search..." name="find"></input> 
+     <button class="findbtn" id="loginbtn" type="submit"><i class="bi bi-search"></i> Search</button>
+    </form>
+   </div>
+  <table>
+    <tr>
+      <th>Role ID</th>
+      <th>Role Name</th>
+      <th>View</th>
+      <!-- <th>Edit</th> -->
+      <!-- <th>Delete</th> -->
+
+    </tr>
+    
+    <%employeerole.forEach((data)=> {%>     
+    <tr>
+      <td><%=data.role_id%></td>
+      <td><%=data.role_name%></td>
+      <td><a  class="tablebtn" href="#" id="viewbtn" ><i class="bi bi-eye-fill"></i></a></td>
+      <!-- <td> <a class="tablebtn" href="/Home/edit-role/<%=data.role_id%>" method="post" ><i class="bi bi-pen-fill"></i></a></td> -->
+      <!-- <td><a class="tablebtn" id="delbtn" href="#" method="post"><i class="bi bi-trash-fill"></i></a></td> -->
+    </tr>
+    <% });%> 
+  </table>
+  
+</div>
+<div class="roleoverlayout">
+  <div class="rolefrombg">
+    <form action="/Home/add-role" method="post">
+      <div class="closeaddrole">+</div>
+      <div class="addroll">
+          <label  for="role_name" >Roll name</label>
+          <input type="text" id="rollname" placeholder="Roll name" name="role_name" required></input>
+          <label  for="role_id">Roll ID</label>
+          <input type="text" id="rollid" placeholder="Roll primary key" name="role_id" required></input>
+          
+          <button type="submit" id="addrollbtn" name="Addroll">ADD ROLL</button>
+         
+      </div>
+      </form>
+      </div>
+      </div>
+      <script type="text/javascript" src="/js/viewrole.js"></script>
+    <%- include('partials/footer') -%>

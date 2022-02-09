@@ -1,17 +1,58 @@
 
   <%- include('partials/header') -%>
-  <div class="wrapper">
+  <% var erroralleret= error %>
+  <div class="wrapper"> 
+    <div class="alert <% if(error){%> show <%}else{%>hide hide_on_start<%}%>">
+      <span ><i class="bi bi-exclamation-diamond-fill exclamation"></i></span>
+      <span class="msg"><% if(error){ %> <%=error_msg%>  <%}%></span>
+      <div class="close-btn">
+         <span ><i class="bi bi-x-square fas"></i></span>
+      </div>
+   </div>
+    <form action="/" method="post">
 <div class="logindetails">
     <label  for="username" >Username</label>
-    <input type="text" id="loginId" placeholder="User ID" name="username" required></input>
+    <input type="text" id="loginId" placeholder="User ID" name="emp_user_name" required></input>
     <label  for="loginpassword">Password</label>
-    <input type="password" id="loginPassword" placeholder="Password" name="loginpassword" required></input>
+    <div class="passwordvisible">
+      <input type="password" id="password" placeholder="Password" name="emp_password" required></input> 
+      <i class="bi bi-eye-fill ico1 passhidden"></i>
+      <i class="bi bi bi-eye-slash-fill ico2 pass "></i>
+      <i class="pass passiconclick"></i>
+    </div>  
     <button type="submit" id="loginbtn" name="Login">Login</button>
     <div class="rememberme">
-   <input type="checkbox" checked="checked" name="remember">
-   <label class="remember" for="remember">Remember me</label> 
+   <label class="remember" for="remember"><a href="/forgot-password"> forgot password?</a></label> 
 </div>
 </div>
+</form>
+</div>
+<script>
+  document.querySelector('.passiconclick').addEventListener("click",function() {
+const password = document.querySelector('#password');
+const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+password.setAttribute('type', type);
 
-</div>
+const icon1 = document.querySelector('.ico1');
+icon1.classList.toggle("passhidden");
+icon1.classList.toggle("pass");
+const icon2 = document.querySelector('.ico2');
+icon2.classList.toggle("pass");
+icon2.classList.toggle("passhidden");
+});
+
+function closing() {
+  setTimeout(function(){
+      document.querySelector('.alert').classList.remove("show");
+      document.querySelector('.alert').classList.toggle("hide");
+     },5000);
+};
+
+document.querySelector(".close-btn").addEventListener("click",function() {
+  console.log("close button is presed",)
+   document.querySelector('.alert').classList.remove("show");
+    document.querySelector('.alert').classList.add("hide");
+   });
+
+</script>
 <%- include('partials/footer') -%>

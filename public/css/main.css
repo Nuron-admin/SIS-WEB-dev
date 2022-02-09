@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap");
+
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: rgb(247, 220, 248);
@@ -16,13 +19,20 @@ body {
 header,
 footer {
   background-color: ghostwhite;
-  border-bottom: 1px;
-  padding: 10px;
+  padding: 4px;
 }
 header {
+  display: flex;
   align-items: center;
-  text-align: right;
+  justify-content: space-between;
 }
+header a {
+  padding: 0;
+  margin: 0;
+  max-height: 30px;
+  min-width: auto;
+}
+
 footer {
   position: fixed;
   min-width: 100%;
@@ -32,7 +42,7 @@ footer {
 }
 .logo-top {
   max-height: 30px;
-  max-width: 180px;
+  min-width: auto;
 }
 
 .logo-discrption {
@@ -186,6 +196,9 @@ option {
 .alert.show {
   animation: show_slide 1s ease forwards;
 }
+.alert.hide_on_start {
+  display: none;
+}
 @keyframes show_slide {
   0% {
     transform: translateX(100%);
@@ -250,4 +263,201 @@ option {
   color: #75429d;
   font-size: 20px;
   line-height: 40px;
+}
+
+/* customization of the password reste page for the user */
+/* .outerbody {
+  background-color: red;
+  max-width: 40%;
+  margin: auto;
+} */
+
+.formcontent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 10em;
+  min-height: 100vh;
+}
+
+.formcontent label {
+  font-size: 20px;
+}
+
+.formcontent input {
+  max-height: 2.2em;
+  font-size: 15px;
+  max-width: 20em;
+  /* background-color: rgb(218, 69, 69); */
+  color: black;
+  border-radius: 10px;
+  outline: none;
+}
+.formcontent input::placeholder {
+  color: black;
+  opacity: 0.5;
+}
+.formcontent button {
+  min-height: 3em;
+  max-width: 10em;
+  padding: 5px;
+  font-size: 10px;
+  font-weight: 3px;
+}
+
+.formcontent .passstrenth {
+  display: flex;
+  font-size: 4px;
+  align-items: left;
+  align-items: rigth;
+  justify-content: space-between;
+  min-width: 63px;
+  margin: 0;
+  padding: 0;
+}
+.formcontent .passstrenth .bar {
+  align-self: left;
+  background-color: rgb(167, 161, 161);
+  min-width: 20px;
+  min-height: 5px;
+  border-radius: 3px;
+}
+
+.formcontent .passstrenth .yellow {
+  background-color: rgb(255, 251, 0);
+}
+.formcontent .passstrenth .red {
+  background-color: rgb(238, 81, 41);
+}
+.formcontent .passstrenth .green {
+  background-color: rgb(30, 255, 0);
+}
+
+/* .formcontent > *:second-child {
+  align-self: left;
+} */
+
+.selected {
+  background-color: rgb(143, 233, 143);
+}
+
+/* This session is for the forgotpassword for the uuser itself */
+.userbg1 {
+  background-image: url(../logo/bg1.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.userbg1 .formcontent label {
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 2px 2px #328dd6;
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.userbg1 .formcontent button {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: #328dd6;
+}
+.userbg1 .formcontent button:hover {
+  background-image: url(../logo/bg1.svg);
+  background-repeat: no-repeat;
+  background-size: 150px;
+  border: 1px solid white;
+
+  padding: 0;
+}
+.userbg1 .formcontent input {
+  min-width: 250px;
+  min-height: 35px;
+  border-style: none;
+  text-align: center;
+}
+.userbg2 {
+  background-image: url(../logo/bg2.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.userbg2 .formcontent input {
+  min-width: 200px;
+  min-height: 30px;
+  border-style: none;
+  text-align: center;
+}
+.userbg2 .formcontent label {
+  min-height: 15px;
+}
+.userbg2 .formcontent button {
+  color: white;
+  font-weight: bold;
+  font-size: 12px;
+  background-color: #328dd6;
+}
+.userbg2 .dispmsg {
+  text-align: center;
+  font-size: 12px;
+  color: rgb(206, 201, 201);
+  margin: 0px;
+}
+.userbg2 .dispmsg1 {
+  text-align: center;
+  font-size: 15px;
+  color: rgb(243, 242, 242);
+  margin: 0px;
+}
+.userbg2 .formcontent {
+  margin: 0px;
+  padding: 0px;
+  min-height: auto;
+  min-width: 60vw;
+}
+
+.userbg2 .resend-otp {
+  font-size: 12px;
+  color: rgb(173, 172, 172);
+}
+#resend-otp-enable {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 12px;
+  color: #9bc6ea;
+  pointer-events: none;
+}
+
+/* // user3 for the reseting the password */
+
+.userbg3 {
+  background-image: url(../logo/bgw1.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.userbg3 .formcontent {
+  color: white;
+}
+.userbg3 .formcontent label {
+  /* text-transform: uppercase; */
+  text-shadow: 2px 2px #328dd6;
+}
+
+.userbghide {
+  display: none;
 }

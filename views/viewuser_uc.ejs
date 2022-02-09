@@ -1,0 +1,103 @@
+<%- include('partials/user_header') -%>
+<div class="wrapper">
+ <div class="table-content">
+   <div class="find-from-bg">
+    <button class="adduserbtn"  id="adduserbtnpopup"><i class="bi bi-person-plus-fill"></i> Add new</button>
+   <form class="find-from" action="/Home" method="post">
+    <input id="find" type="text" placeholder="Search..." name="find"></input> 
+    <button class="findbtn" id="loginbtn" type="submit"><i class="bi bi-search"></i> Search</button>
+   </form>
+  </div>
+  
+  <table class="viewusertable">
+    <tr>
+      <th>Emp ID</th>
+      <th>Name</th>
+      <th>Mobile number</th>
+      <th>Roll</th>
+      <th class="tblbtnview">View</th>
+      <th class="tblbtnview">Edit</th>
+      <th class="tblbtnview">Delete</th>
+
+    </tr>
+    
+    <%employeedata.forEach((data)=> {%>     
+    <tr>
+      <td><%=data.emp_id%></td>
+      <td><%=data.emp_name%></td>
+      <td><%=data.phone_no_1%></td>
+      <td><%=data. role_name%></td>
+      
+      <td><a class="tablebtn"  id="viewbtn" href="/Home/view-user/<%=data.emp_id%>" method="get" ><i class="bi bi-eye-fill"></i></a></td>
+      <td> <a class="tablebtn"  href="/Home/edit-user/<%=data.emp_id%>" method="post"><i class="bi bi-pen-fill"></i></a></td>
+      <td><a class="tablebtn delbtn" id="delbtn" href="/Home/del-user/<%=data.emp_id%>" ><i class="bi bi-trash-fill"></i></a></td>  
+     
+    </tr>
+    <% });%> 
+  </table>
+  
+  </div>
+   
+<div class="overlayout">
+   <div class="alert hide_on_start hide">
+    <span ><i class="bi bi-exclamation-diamond-fill exclamation"></i></span>
+    <span class="msg"></span>
+    <div class="close-btn">
+       <span ><i class="bi bi-x-square fas"></i></span>
+    </div>
+ </div>
+  <div class="frombg">
+  <form id="adduserfrom" action="/Home/add-user" method="post">
+    
+    <div class="closeadduser">+</div>
+    <div class="userdetails">
+        <label  for="emp_id" id="emp_id_text">Employee ID</label>
+        <input type="text" id="emp_id" placeholder="Name" name="emp_id" required></input>
+        <label  for="emp_name">Employee Name</label>
+        <input type="text" placeholder="Name" name="emp_name" required></input>
+        <label id="emp_email_text" for="emp_email">Employee Mail ID</label>
+        <input type="text" id="emp_email" placeholder="Email" name="emp_email" required></input>
+        <label  for="emp_phone1">Primary Mobile Number</label>
+        <input type="text" placeholder="phone number" name="emp_phone1" required></input>
+        <label  for="emp_phone2">Secondary Mobile Number</label>
+        <input type="text" placeholder=" Secondary number" name="emp_phone2"></input>
+        <label  for="emp_role">Employee Roll<br></label>
+        <select name="emp_role" id="employroll"required>
+            <option class="dropedown" selected="selected">none</option>
+          <%rolldata.forEach((data)=> {%>
+            <option class="dropedown" id=<%= data.role_id%>><%= data.role_name%></option>
+            <% });%>  
+        </select>
+        <label  for="emp_repo_manager_name">Reporting Manager</label>
+        <select name=" emp_repo_manager_name" id="repomanager"required>
+
+        </select> 
+        
+        <label  for="emp_repo_manager_id">Reporting Manager ID</label>
+        <input type="text" id="repomanagerip" placeholder="Manager details" name="emp_repo_manager_id" readonly ></input> 
+
+        <label  for="emp_repo_manager_id">Password</label>
+      <div class="autopass">
+        <div class="passwordvisible">
+        <input type="password" id="password" placeholder="Manager details" name="emp_password" required></input> 
+        
+        <i class="bi bi-eye-fill ico1 passhidden"></i>
+        <i class="bi bi bi-eye-slash-fill ico2 pass "></i>
+        <i class="pass passiconclick"></i>
+      </div>
+      <div class="autbtn" type="nosubmit">Auto</div>
+    </div>
+      <button  class="adduserfrombtn"  type="submit">ADD USER</button>
+
+  </div>
+
+</form>
+</div>
+
+</div>
+
+
+<!-- </section> -->
+
+<script type="text/javascript" src="/js/main.js"></script>
+    <%- include('partials/footer') -%>

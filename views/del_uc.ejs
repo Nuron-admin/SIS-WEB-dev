@@ -1,0 +1,19 @@
+<%- include('partials/user_header') -%>
+<div class="outer_pop">
+    <div class="align_pop">
+    <div class="msg">
+        Do you realy want to delete this user with ID : <%=data%>?
+    </div>
+  <div class="buttons">
+<form action="/Home/del-user/<%=data%>" method="post">
+    <input class ="popbtn" type="submit" value="Delete"/>
+</form>
+
+<form action="javascript:history.back()" method="get">
+    <input  class ="popbtn" type="submit" value="Cancle"/>
+</form>
+</div>
+</div>
+</div>
+</div>
+<%- include('partials/footer') -%>

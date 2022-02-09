@@ -3,6 +3,9 @@ const express = require('express');
 const mysql = require('mysql');
 const app = express();
 const sgMail = require('@sendgrid/mail')
+var md5 = require('md5');
+var jwt = require('express-jwt');
+ 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const pool = mysql.createPool({
@@ -73,13 +76,17 @@ console.log(req.body);
     const data2 = {
         emp_id:req.body.emp_id,
         emp_username:req.body.emp_email,
-        emp_password:req.body.emp_password
+        emp_password:md5(req.body.emp_password)
+    }
+    const data3 = {
+        emp_id:req.body.emp_id,
+        emp_role:req.body.emp_role
     }
     pool.getConnection((err,connection) =>{
         if(err) throw err
         console.log(`connection as id : `+ connection.threadId)
        
-        connection.query('INSERT INTO sis.employee_info SET ?; INSERT INTO sis.employee_credentials SET ?;',[data,data2],(err,rolldata)=>{
+        connection.query('INSERT INTO sis.employee_info SET ?; INSERT INTO sis.employee_credentials SET ?;INSERT INTO sis.employee_password_check SET ?;',[data,data2,data3],(err,rolldata)=>{
             connection.release();
             if(!err){
             console.log(`The new employe has been created as ${[req.body.emp_name]}`);
@@ -103,8 +110,17 @@ console.log(req.body);
             res.redirect("/admin/view-user");
             }else{
                 console.log(err);
-                alert("Hello! I am an alert box!");
-                res.redirect("/admin/view-user");
+                console.log(err.sqlMessage);
+                const str = err.sqlMessage;
+                if(err.code == "ER_DUP_ENTRY"){
+                    
+                    console.log("there was a duplicate entry")
+                    // res.redirect("/admin/view-user");
+                    res.status(404).send('there was a duplicate entry')
+                }
+                // res.redirect("/admin/view-user");
+                // res.send(alert("Hello! I am an alert box!"));
+                // res.status(404).send('Sorry, we cannot find that!')
             }
             
 
@@ -149,12 +165,12 @@ exports.view_user =(req, res) => {
             if(err) throw err
             console.log(`connection as id : `+ connection.threadId)
            
-            connection.query("SELECT * FROM sis.employee_info where emp_id =?;", [req.params.id],(err,empowndata)=>{
+            connection.query("SELECT * FROM sis.employee_info where (emp_id =?);", [req.params.id],(err,empowndata)=>{
                 console.log(empowndata);
                 if(!err){
-                    connection.query("SELECT * FROM sis.employee_info where emp_id =?;", empowndata[0].reporting_manager_id?empowndata[0].reporting_manager_id:0,(err,reportingempowndata)=>{
+                    connection.query("SELECT * FROM sis.employee_info where (emp_status = 'Active' and emp_id = ?);", empowndata[0].reporting_manager_id?empowndata[0].reporting_manager_id:0,(err,reportingempowndata)=>{
                         if(!err){
-                            connection.query("SELECT * FROM sis.employee_info where reporting_manager_id = ?;", empowndata[0].emp_id?empowndata[0].emp_id:0,(err,childempowndata)=>{
+                            connection.query("SELECT * FROM sis.employee_info where (emp_status = 'Active' and reporting_manager_id = ?);", empowndata[0].emp_id?empowndata[0].emp_id:0,(err,childempowndata)=>{
 
                                 connection.release();
                                 if(!err){
@@ -336,7 +352,7 @@ exports.modify_user =(req, res) => {
              connection.release();
              if(!err){
                 //  res.send(data);
-                res.render('viewuser',{ title: 'Nuron',employeedata:data[0],rolldata:data[1] });
+                res.render('viewuser',{ title: 'Nuron',employeedata:data[0],rolldata:data[1]});
 
             }else{
                 console.log(err);
@@ -424,11 +440,6 @@ pool.getConnection((err,connection) =>{
  })
 
  }
-
-
-
- 
-
  exports.admin_login_check =(req, res) => {
 
     pool.getConnection((err,connection) =>{
@@ -463,3 +474,56 @@ pool.getConnection((err,connection) =>{
  })
 
  }
+
+//checking for the duplicate id value exists in database
+ exports.check_emp_id =(req, res) => {
+
+    pool.getConnection((err,connection) =>{
+     if(err) throw err
+     console.log(`connection as id : `+ connection.threadId)
+    
+     connection.query("SELECT * FROM sis.employee_info WHERE emp_id = ?;",[req.params.id], (err,data)=>{
+         connection.release();
+         if(!err){
+                if(data[0]){
+                    res.send({data:"the employ ID allready exits",
+                error_code:400});
+                }else{
+                    res.send({data:"the employ ID does not exits",
+                error_code:200});
+                }
+         }
+        })
+    })
+}
+
+
+
+//checking for the duplicate employee email exists in database
+exports.check_emp_email =(req, res) => {
+
+    pool.getConnection((err,connection) =>{
+     if(err) throw err
+     console.log(`connection as id : `+ connection.threadId)
+    
+     connection.query("SELECT * FROM sis.employee_info WHERE emp_email = ?;",[req.params.email], (err,data)=>{
+         connection.release();
+         if(!err){
+             console.log(data)
+             if(data[0]){
+                if(data[0].emp_status == "Active"){
+                    res.send({data:"The employ email allready exits",
+                error_code:400});
+                }else if(data[0].emp_status == "Deactive"){
+                    res.send({data:"The employ email allready exits but not active",
+                error_code:402});
+                }
+            }
+                else{
+                    res.send({data:"The employ email does not exits",
+                error_code:200});
+                }
+         }
+        })
+    })
+}

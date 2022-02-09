@@ -1,0 +1,84 @@
+<%- include('partials/user_header.ejs') -%>
+
+<div class="displaydata">
+    <div class="colourcode">
+        <div >Reporting Manager Details <div class="colourcode_1"></div>
+
+        </div>
+        <div class="colourcode_2">Respective Employee Details</div>
+        <div class="colourcode_3">Employee  Details Under Him</div>
+
+        
+    </div>
+    <div class="displayhero">
+        
+        <table>
+            <tr>
+                <th>Position</th>
+              <th>Emp ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile Primary</th>
+              <th>Mobile Secondary</th>
+              <th>Roll</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+        
+            </tr>
+            <%if(reportingempowndata[0]){%>
+            <tr>
+                <td>Reporting Manager</td>
+                <td><%=reportingempowndata[0].emp_id%></td>
+                <td><%=reportingempowndata[0].emp_name%></td>
+                <td><%=reportingempowndata[0].emp_email%></td>
+                <td><%=reportingempowndata[0].phone_no_1%></td>
+                <td><%=reportingempowndata[0].phone_no_2%></td>
+                <td><%=reportingempowndata[0].role_name%></td>
+                <td><a class="tablebtn"  id="viewbtn" href="/Home/view-user/<%=reportingempowndata[0].emp_id%>" method="get" ><i class="bi bi-eye-fill"></i></a></td>
+                <td> <a class="tablebtn"  href="/Home/edit-user/<%=reportingempowndata[0].emp_id%>"><i class="bi bi-pen-fill"></i></a></td>
+                <td><a class="tablebtn" id="delbtn" href="/Home/del-user/<%=reportingempowndata[0].emp_id%>" method="post"><i class="bi bi-trash-fill"></i></a></td>
+                
+      </tr>      
+      <%}%>  
+    
+            <tr>
+                <td>Employee</td>
+                <td><%=empowndata[0].emp_id%></td>
+                <td><%=empowndata[0].emp_name%></td>
+                <td><%=empowndata[0].emp_email%></td>
+                <td><%=empowndata[0].phone_no_1%></td>
+                <td><%=empowndata[0].phone_no_2%></td>
+                <td><%=empowndata[0].role_name%></td>
+                <td><a class="tablebtn"  id="viewbtn" href="#" method="get" ><i class="bi bi-eye-fill"></i></a></td>
+                <td> <a class="tablebtn"  href="/Home/edit-user/<%=empowndata[0].emp_id%>"><i class="bi bi-pen-fill"></i></a></td>
+                <td><a class="tablebtn" id="delbtn" href="/Home/del-user/<%=empowndata[0].emp_id%>" method="post"><i class="bi bi-trash-fill"></i></a></td>
+      </tr>          
+      <%if(childempowndata[0]){childempowndata.forEach((data)=> {%>   
+      <tr>
+        <td>Employee Under him</td>
+        <td><%=data.emp_id%></td>
+                <td><%=data.emp_name%></td>
+                <td><%=data.emp_email%></td>
+                <td><%=data.phone_no_1%></td>
+                <td><%=data.phone_no_2%></td>
+                <td><%=data.role_name%></td>
+                <td><a class="tablebtn"  id="viewbtn" href="/Home/view-user/<%=data.emp_id%>" method="get" ><i class="bi bi-eye-fill"></i></a></td>
+                <td> <a class="tablebtn"  href="/Home/edit-user/<%=data.emp_id%>" method="post"><i class="bi bi-pen-fill"></i></a></td>
+                <td><a class="tablebtn" id="delbtn" href="/Home/del-user/<%=data.emp_id%>" method="post"><i class="bi bi-trash-fill"></i></a></td>
+</tr>          
+<% });};%> 
+
+
+
+        </table>        
+
+</div>
+       
+    
+    
+    </div>
+
+
+
+        <%- include('partials/footer') -%>

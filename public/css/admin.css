@@ -3,11 +3,18 @@ body {
   background-color: rgb(247, 220, 248);
   font-size: 26px;
   margin: 0px;
+  min-height: 100vh;
+}
+:root {
+  --max-screen-hight-size: 150vh;
 }
 
 .wrapper {
   padding: 0px;
   overflow: hidden;
+  height: 100%;
+  /* background-color: pink; */
+  min-height: 100vh;
 }
 main {
   padding: 20px;
@@ -19,7 +26,7 @@ footer {
   background-color: ghostwhite;
   border-bottom: 1px;
   padding: 10px;
-  max-width: 100%;
+  min-width: 100%;
 }
 header {
   display: flex;
@@ -32,7 +39,7 @@ header .logo-top {
 }
 
 header .navbar {
-  min-width: 40vh;
+  min-width: 40vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -198,6 +205,7 @@ select {
   border-collapse: collapse;
   margin: 0 auto;
   min-width: 80%;
+  margin-bottom: 50px;
 }
 .table-content td,
 .table-content th {
@@ -264,26 +272,33 @@ select {
 }
 
 .overlayout {
-  min-width: 100%;
-  height: 115%;
+  width: 100%;
+  min-height: auto;
   background-color: rgba(0, 0, 0, 0.7);
-  position: absolute;
+  /* position: absolute; */
   top: 0;
-  /* display: flex; */
+  z-index: 4;
   justify-content: center;
-  /* align-items: center; */
   display: none;
+  position: fixed;
+  /* overflow-y: scroll; */
+}
+@media only screen and (max-height: 745px) {
+  .overlayout {
+    position: absolute;
+    min-height: 120vh;
+  }
 }
 
 .frombg {
-  background-color: rgb(252, 216, 222);
+  background-color: rgba(252, 216, 222, 0.9);
   width: 50%;
   border-radius: 25px;
   padding-top: 20px;
   position: relative;
   margin-top: 30px;
-  max-height: 635px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
+  min-height: auto;
 }
 .closeadduser {
   color: black;
@@ -373,6 +388,15 @@ select {
 
   border-radius: 35px;
 }
+
+#emp_manager_name * {
+  padding: 30px;
+  min-height: 50px;
+  margin: 20px;
+}
+.selected {
+  background-color: rgb(143, 233, 143);
+}
 #editbtn {
   max-width: 150px;
   border-radius: 25px;
@@ -401,6 +425,12 @@ select {
   min-width: 110px;
   border-radius: 20px;
   max-height: 40px;
+}
+.adduserfrombtn {
+  margin: 8px auto;
+  max-width: 10em;
+  margin: 0 auto;
+  margin-bottom: 10px;
 }
 
 .findbtn {
@@ -583,5 +613,239 @@ select {
 }
 .autbtn:hover {
   background-color: #9ac6eb;
+  color: black;
+}
+
+/*alert error message customization  */
+
+* {
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.alert {
+  background: #98add8;
+  padding: 3px 10px;
+  min-width: 380px;
+  position: absolute;
+  right: 10px;
+  top: 85px;
+  border-radius: 4px;
+  border-left: 6px solid #ea38aa;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+.alert {
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 5;
+}
+.alert.show {
+  animation: show_slide 1s ease forwards;
+}
+@keyframes show_slide {
+  0% {
+    transform: translateX(100%);
+  }
+  40% {
+    transform: translateX(-10%);
+  }
+  80% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-10px);
+  }
+}
+.alert.hide {
+  animation: hide_slide 1s ease forwards;
+}
+@keyframes hide_slide {
+  0% {
+    transform: translateX(-10px);
+  }
+  40% {
+    transform: translateX(0%);
+  }
+  80% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
+}
+.alert .exclamation {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #75429d;
+  font-size: 25px;
+}
+.alert .msg {
+  padding: 0 25px;
+  font-size: 15px;
+  color: #75429d;
+  line-height: 40px;
+}
+.alert .close-btn {
+  position: absolute;
+  right: 0px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e50794;
+  padding: 15px 13px;
+  cursor: pointer;
+}
+.alert .close-btn:hover {
+  background: #e50794;
+}
+.alert .close-btn .fas {
+  color: #75429d;
+  font-size: 20px;
+  line-height: 40px;
+}
+.hide_on_start {
+  display: none;
+}
+
+/* //customization for the delete confirm button  */
+.outer_pop {
+  width: 100%;
+  min-height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  /* position: absolute; */
+  margin: 0 auto;
+  top: 0;
+  z-index: 2;
+  justify-content: center;
+  align-items: center;
+  /* display: none; */
+  position: fixed;
+}
+.outer_pop .buttons {
+  display: flex;
+  gap: 0.5em;
+  margin: 0;
+  /* min-width: 8em; */
+  min-height: 1.4em;
+}
+.popbtn {
+  background-color: #ff95d8;
+  border-style: none;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+.popbtn:hover {
+  background-color: #ff29b0;
+  font-weight: bold;
+}
+.outer_pop .align_pop {
+  min-height: 20vh;
+  max-width: 50vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 0.5em;
+  flex-direction: column;
+  background-color: rgb(255, 255, 255);
+  margin: auto;
+  margin-top: 30vh;
+  border-radius: 5vh;
+}
+
+.align_pop .msg {
+  font-size: 15px;
+}
+
+/* //new design for cards, viewing the user this a try */
+.gridgrp {
+  margin: 0 6vw;
+  display: grid;
+  grid-gap: 20px;
+  /* grid-template-columns: repeat(auto-fill, minmax(250px, 200px)); */
+  grid-template-columns: repeat(6, 200px);
+  /* 200px 200px 200px 200px 200px 200px; */
+  margin-bottom: 35px;
+}
+@media only screen and (max-width: 1300px) {
+  .gridgrp {
+    grid-template-columns: repeat(5, 200px);
+  }
+}
+@media only screen and (max-width: 1050px) {
+  .gridgrp {
+    grid-template-columns: repeat(4, 200px);
+  }
+}
+@media only screen and (max-width: 900px) {
+  .gridgrp {
+    grid-template-columns: repeat(3, 200px);
+  }
+}
+@media only screen and (max-width: 600px) {
+  .gridgrp {
+    grid-template-columns: repeat(2, 200px);
+  }
+}
+.card {
+  background-color: #956db2;
+  align-items: center;
+  text-align: center;
+  display: inline-block;
+  height: 250px;
+  width: 200px;
+  overflow: hidden;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 10px rgba(78, 78, 78, 0.8));
+  margin: 20px;
+}
+.card:hover {
+  filter: drop-shadow(0 10px 0.75rem rgba(46, 46, 46, 0.8));
+}
+
+.profileimage {
+  background-image: linear-gradient(#c0aad2, #f9cce9);
+  min-height: 100px;
+  max-width: 100px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 38px;
+  border-radius: 100px;
+  margin: 0 auto;
+  margin-top: 10px;
+  filter: drop-shadow(0 10px 0.6rem rgba(0, 0, 0, 0.8));
+}
+
+.empid {
+  margin-top: 10px;
+  font-size: 15px;
+  padding: 5px;
+}
+.name {
+  font-size: 15px;
+  padding: 5px;
+}
+.phone {
+  font-size: 15px;
+  padding: 5px;
+}
+.cardnavbar {
+  font-size: 15px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.profileimage a {
+  text-decoration: none;
   color: black;
 }

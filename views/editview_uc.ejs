@@ -1,0 +1,72 @@
+<%- include('partials/admin_header.ejs') -%>
+<div class="editcontent">
+<div class="editcontentinner">
+    <form action="/Home/add-user/<%-employeeeditdata[0].emp_id%>" method="post">
+  
+    <table>
+        <div class="edittablecontainer">
+         <tr class="editviewtr">
+              <td class="editviewtd">EMPLOYEE ID</td>
+              <td class="editviewtd"><input type="text" class="editpagebtn readonly" name="emp_id" value=<%-employeeeditdata[0].emp_id%> readonly ></input></td>
+         </tr>  
+         <tr class="editviewtr">
+            <td class="editviewtd">EMPLOYEE NAME</td>
+            <td class="editviewtd"><input type="text" class="editpagebtn" name="emp_name" value=<%-employeeeditdata[0].emp_name%>></input></td>
+       </tr>
+       <tr class="editviewtr">
+        <td class="editviewtd">EMPLOYEE EMAIL ID</td>
+        <td class="editviewtd"><input type="text" class="editpagebtn" name="emp_email" value=<%-employeeeditdata[0].emp_email%>></input></td>
+   </tr>
+   <tr class="editviewtr">
+    <td class="editviewtd">EMPLOYEE PRIMARY MOBILE NUMBER</td>
+    <td class="editviewtd"><input type="text" class="editpagebtn" name="phone_no_1" value=<%-employeeeditdata[0].phone_no_1%>></input></td>
+</tr>
+<tr class="editviewtr">
+    <td class="editviewtd">EMPLOYEE SECONDARY MOBILE NUMBER</td>
+    <td class="editviewtd"><input type="text" class="editpagebtn" name="phone_no_2" value=<%-employeeeditdata[0].phone_no_2%>></input></td>
+</tr>
+<tr class="editviewtr">
+    <td class="editviewtd">EMPLOYEE ROLE</td>
+    <td class="editviewtd"><input type="text" class="editpagebtn readonly" name="role_name" value=<%=employeeeditdata[0].role_name%> readonly ></input></td>
+</tr>
+<tr class="editviewtr">
+    <td class="editviewtd">REPORTING MANAGER</td>
+     <td class="editviewtd">
+        <select name="emp_manager_name" id="emp_manager_name">
+            <!-- <option selected="selected" ><%-employeeeditdata[0].reporting_manager_name%></option> -->
+            <%data.forEach((dat)=> {%> 
+                <%if(employeeeditdata[0].reporting_manager_name != dat.emp_name){%> 
+                <option value="<%=dat.emp_id%>" ><%=dat.emp_name%></option>
+                <% }else{%> 
+                    <option class="selected" value="<%=dat.emp_id%>"selected="selected"><%=dat.emp_name%></option>
+                <% }});%> 
+            </select>
+            </td>
+</tr>
+<tr class="editviewtr">
+    <td class="editviewtd">REPORTING MANAGER ID</td>
+     <td class="editviewtd"><input type="text" id="repo_mang_id" class="editpagebtn readonly" name="emp_manager_id" value="<%=employeeeditdata[0].reporting_manager_id%>" readonly></input>
+        
+            </td>
+</tr>
+
+
+</div>
+
+    </table>
+    <button   type="submit">MODDIFY DATA</button>
+    </form>
+</div>
+</div>
+
+<script>
+    document.getElementById("emp_manager_name").onchange = () =>{
+var selected_repo_manager = document.getElementById("emp_manager_name").value;
+console.log(selected_repo_manager);
+
+document.getElementById("repo_mang_id").value = selected_repo_manager;
+
+}
+</script>
+
+<%- include('partials/footer') -%>
