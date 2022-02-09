@@ -16,6 +16,7 @@ module.exports = function(req, res, next) {
         console.log("auth_token exist");
     }
     const indexofcookie = cookies.indexOf("Cookie");
+    if(indexofcookie !== -1){
     const cookievalue = cookies[indexofcookie+1];
 
 
@@ -39,6 +40,9 @@ module.exports = function(req, res, next) {
     
     });
 }
+    }else{
+        res.redirect("/");
+    }
     
     
     }
