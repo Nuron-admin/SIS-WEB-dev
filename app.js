@@ -1,4 +1,5 @@
 // Imports
+require("dotenv").config();
 const express = require('express')
 const ejs = require('ejs');
 // const expressLayouts = require('express-ejs-layouts');
@@ -8,7 +9,7 @@ const bodyParser = require('body-parser')
 
 
 const app = express()
-const port = 5000
+const port = process.env.PORT || 5000
 const pool = mysql.createPool({
   connectionlimit:10,
   host: process.env.DB_HOST,
