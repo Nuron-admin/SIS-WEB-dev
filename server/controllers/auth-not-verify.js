@@ -11,11 +11,9 @@ module.exports = function(req, res, next) {
     
     const cookies= req.rawHeaders;
     console.log("the res in cookies check for not authin  is ",cookies);
-    
-    
-    const indexofcookie = cookies.indexOf("Cookie");
-
+    const indexofcookie = cookies.indexOf("Cookie");    
     if(indexofcookie !== -1){
+       
 
     console.log("the res in cookies in  is ",cookies[indexofcookie+1]);
 
@@ -39,7 +37,7 @@ if(!err){
     res.redirect("/home")
 }else{
     console.log("not a valid user exitsss in");
-    next();
+     next();
 }
     });
    
@@ -48,6 +46,6 @@ if(!err){
 }
 
     }else{
-        next();
+         next();
     }
 }
